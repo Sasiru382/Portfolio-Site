@@ -31,7 +31,7 @@ export function SystemMap() {
       <div className="map-head">
         <span className="eyebrow">SYSTEM / PERSPECTIVE</span>
         <span className="map-cross" aria-hidden="true">
-          ＋
+          +
         </span>
       </div>
       <div className="map-layer">

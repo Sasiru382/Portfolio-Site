@@ -52,7 +52,7 @@ h3 {
   margin: 0;
 }
 h1 {
-  font-size: clamp(3.5rem, 8vw, 6.8rem);
+  font-size: clamp(2.3rem, 13vw, 6.8rem);
 }
 h2 {
   font-size: clamp(2rem, 4vw, 3rem);
