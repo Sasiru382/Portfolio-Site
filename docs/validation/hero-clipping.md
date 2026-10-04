@@ -27,4 +27,14 @@ The new Playwright regression failed on the original 980px layout with diagram c
 
 `scripts/hero-geometry.mjs` checks every diagram child's rectangle, internal scroll width, actual text ranges inside the figure and each row, and heading text against its column. This catches hidden internal clipping even when the document itself does not overflow. The same assertions run against root, project-path, and live Pages exports.
 
-See `pages-local.json`, `e2e.json`, and screenshots `pages-980.png`, `pages-mobile-desktop-980.png`, and `pages-1440.png`. Live evidence is recorded separately after publication.
+See `pages-local.json`, `e2e.json`, and screenshots `pages-980.png`, `pages-mobile-desktop-980.png`, and `pages-1440.png`.
+
+## Publication and live verification
+
+- Source fix: `27cccac`; production export: `385a2d6fb8ffa10bddbcd36ffb01993d5b0b9b7a`, fast-forwarded to main and published through the existing main/root Pages source without changing Pages settings or workflows.
+- GitHub Pages deployment [37201461820](https://github.com/Sasiru382/Portfolio-Site/actions/runs/37201461820): completed successfully for that export SHA.
+- Public URL: **https://sasiru382.github.io/Portfolio-Site/**.
+- Live `verify-pages.mjs`: 44 route/viewport checks, 13 assets, zero console/network errors, zero axe violations, correct HTTP 404 and all twelve hero geometry checks (eleven widths plus mobile desktop-layout) passed. At 980px, the diagram is now 530px wide instead of 66px, with every label visible; at 1440px the side-by-side diagram is 404.438px wide.
+- A live every-pixel sweep from 900 through 1280px passed **381** viewport checks with zero internal clipping, heading overflow or document overflow (`hero-live-sweep.json`).
+- All **43** public export files matched the tested local artifact byte-for-byte (`hero-artifact-integrity.json`), including the new `2ktbk8-oruz7w.css` bundle.
+- Live report: `hero-pages-live.json`. Screenshots: `live-980.png`, `live-mobile-desktop-980.png`, and `live-1440.png`; the mobile-desktop screenshot was visually inspected and shows all three complete rows and both foundation labels.
