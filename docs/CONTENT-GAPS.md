@@ -9,6 +9,6 @@ The site works without these details. Missing facts are omitted rather than repl
 5. **Kamus26:** actual repository/branch/commit and contribution summary. Only an upstream Kamus fork is publicly visible; original authors must remain credited.
 6. **Team AI project:** specific contribution to NBA salary prediction, implemented model/source, and permission to use team artifacts.
 7. **LinkedIn:** manually verify the profile link; automated requests return 999.
-8. **Canonical origin:** set `SITE_URL` to the actual approved hosting origin before building for publication. Local builds intentionally use localhost. No custom domain has been invented.
+8. **Canonical origin (resolved for current publication):** production uses `SITE_URL=https://sasiru382.github.io` and `NEXT_PUBLIC_BASE_PATH=/Portfolio-Site`, verified on the live site. Local builds intentionally use localhost. No custom domain has been invented.
 
 Priority: current resume and professional chronology, then one evidence-rich infrastructure case study. Real depth matters more than adding cards. No certifications or training programs should be added without confirmation.
