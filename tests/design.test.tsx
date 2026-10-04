@@ -15,6 +15,7 @@ test("visual system supplies mobile-first layouts visible keyboard focus and red
     "Responsive accessible visual system is missing",
   );
   const css = readFileSync("src/app/globals.css", "utf8");
+  assert.match(css, /@import "tailwindcss" source\("\.\.\/"\)/);
   assert.match(css, /:focus-visible/);
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /@media\s*\(min-width:/);
