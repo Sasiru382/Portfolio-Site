@@ -1,9 +1,26 @@
-# Deployment (not performed)
+# Deployment
 
-This branch must be reviewed before merging. Do not point production deployment at redesign/portfolio-v2 without explicit owner approval. No main merge or live deployment was performed.
+The owner approved merging the redesign into `main` and publishing it to the existing GitHub Pages site:
 
-## Local production preview
-Use a supported Node.js version meeting Next's requirement (>=20.9; Node 24 LTS recommended). This implementation was exercised on installed Node 26.7.0 / npm 11.19.0.
+**https://sasiru382.github.io/Portfolio-Site/**
+
+## GitHub Pages
+
+Source code is maintained on `main`; the verified static export is published to the dedicated `gh-pages` branch, with `.nojekyll` so `_next/` assets are served. Pages settings select `gh-pages` and `/`. This preserves the source repository and keeps the existing public URL.
+
+A pinned least-privilege Actions workflow was prepared, but GitHub rejected its push because the available token does not have `workflow` scope. No credentials were expanded and no repository permissions were bypassed. Publication therefore uses the supported branch-source Pages mechanism. **A push to main alone does not republish the site**: build/verify the project-path export and publish its contents to `gh-pages` when updating. A future authorized workflow-capable credential can enable CI deployment.
+
+Production was built with Node 24 LTS and `npm ci`. For a new publication, clone the `gh-pages` branch into a temporary checkout, replace its tracked artifact files with `out/` contents (preserving `.git`), add an empty `.nojekyll`, commit the source main SHA in the message and push normally. Never force-push main or publish the source tree itself. Verify the Pages build and live URL after publication.
+
+Build-time configuration:
+
+```sh
+SITE_URL=https://sasiru382.github.io NEXT_PUBLIC_BASE_PATH=/Portfolio-Site npm run build
+```
+
+`SITE_URL` must be an absolute HTTP(S) origin without a path, query or fragment. `NEXT_PUBLIC_BASE_PATH` is empty by default, or a slash-prefixed path with no trailing slash. The shared `sitePath` helper prefixes native navigation, icons and social assets exactly once. Next `basePath` prefixes framework bundles. Canonical/OG, sitemap and robots use the same origin plus base path. Upload the **contents** of `out/`; do not nest the export under another `Portfolio-Site` directory in the Pages artifact.
+
+## Local root preview
 
 ```sh
 npm ci
@@ -14,29 +31,29 @@ npm run build
 npm start
 ```
 
-`npm start` serves the actual static `out/` artifact at http://localhost:3000. `next start` is deliberately not used for static export. The browser suite starts a separate production-export server on port 4173:
+With neither environment variable configured, metadata uses http://localhost:3000 and the export is root-hosted. `npm start` serves `out/` at http://localhost:3000; `next start` is not used for static export.
 
 ```sh
 npx playwright install chromium
 npm run test:e2e
 ```
 
-## Canonical origin
-Set `SITE_URL` at **build time** to the actual origin, with no subpath/query/fragment. The build validates its format. Without it, local metadata uses http://localhost:3000. Never publish that development canonical.
+The root browser suite starts a separate export server on port 4173. Run it after a root-default build, not after a project-path build.
+
+## Project-path and live verification
 
 ```sh
-SITE_URL=https://YOUR-APPROVED-HOST npm run build
+SITE_URL=https://sasiru382.github.io NEXT_PUBLIC_BASE_PATH=/Portfolio-Site npm run build
+node scripts/verify-pages.mjs
+VERIFY_URL=https://sasiru382.github.io/Portfolio-Site/ VERIFY_OUTPUT=docs/validation/pages-live.json node scripts/verify-pages.mjs
 ```
 
-Replace the example value; it is not a proposed domain. Metadata, sitemap, robots and share image URLs are generated from this origin. Rebuild whenever the hosting origin changes. GitHub Pages project subpaths are not supported by the current root-path configuration; use root hosting or deliberately add/test basePath first.
+The project-path verifier creates a temporary local mount under `$TMPDIR`, starts/stops its own server on 4174, and checks home plus all three direct case-study routes at five viewport widths. It checks axe accessibility, overflow, console/network errors, canonical/OG metadata, all discovered scripts/styles/icons, sitemap/robots, HTTP 404, native navigation and no-JavaScript access. It captures mobile and desktop screenshots. Live verification uses the real Pages URL without starting a server.
 
-## Vercel
-After approval, import the repository and choose the branch you intend to deploy. Framework: Next.js; install `npm ci`; build `npm run build`; output `out` for this static-export configuration (override output if the hosting UI does not infer it). Choose supported Node LTS, set SITE_URL to the assigned/approved origin, then rebuild. Do not silently make this redesign the production branch. Preview origins require their own build-time SITE_URL or may retain the configured production canonical by deliberate policy.
+## Other static hosts
 
-## Other static hosting
-Upload the **contents** of `out/` to an HTTPS host with directory-index support, including `_next/`, icons, OG PNG, sitemap.xml and robots.txt. Map missing paths to `404.html` with HTTP 404; do not use an SPA rewrite that returns 200 for everything. Root and each `/work/.../` directory contain real static HTML. No Node server, database, keys or runtime GitHub API is needed on the host.
+Build with the actual approved origin and base path for that host. Upload all of `out/`, including `_next/`, icons, OG PNG, sitemap.xml, robots.txt and `404.html`. Use directory indexes and an actual HTTP 404 for unknown routes, not SPA catch-all rewrites. No Node server, database, secrets or runtime GitHub API is required.
 
-Recommended headers: `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, and `Permissions-Policy: camera=(), microphone=(), geolocation=()`. Apply HSTS only after validating your HTTPS/domain policy. Cache hashed `_next/static/` assets immutably; keep HTML/robots/sitemap revalidatable. A strict CSP must account for Next inline bootstrap scripts with computed hashes; do not copy an unsafe generic policy.
+GitHub Pages controls its response headers; custom hosts can add nosniff, a strict-origin referrer policy and a restrictive permissions policy. Cache hashed `_next/static/` assets immutably; keep HTML/robots/sitemap revalidatable. Any CSP must accommodate Next bootstrap scripts using computed hashes.
 
-## Publication checklist
-Confirm resume/education/experience gaps; set correct SITE_URL; run all quality gates; inspect canonical/OG/sitemap/robots on the final host; test every source and contact link; confirm actual HTTP 404 and HTTPS. Local Lighthouse is lab evidence, not a guarantee of production network or field Core Web Vitals.
+Remaining content gaps (resume, dates and manual LinkedIn confirmation) are documented in CONTENT-GAPS.md; no missing facts or custom domain were invented.

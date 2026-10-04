@@ -1,4 +1,5 @@
 import type { Project } from "../content/projects";
+import { sitePath } from "../content/urls";
 export function ArchitectureFlow({ steps }: { steps: string[] }) {
   return (
     <ol className="architecture-flow" aria-label="Architecture flow">
@@ -36,7 +37,7 @@ export function ProjectCard({
       <div className="project-copy">
         <p className="eyebrow">{project.category}</p>
         <h3>
-          <a href={`/work/${project.slug}/`}>
+          <a href={sitePath(`/work/${project.slug}/`)}>
             {project.title}
             <span className="card-arrow" aria-hidden="true">
               ↗
@@ -50,7 +51,7 @@ export function ProjectCard({
           ))}
         </ul>
         <p className="scope">{project.scope}</p>
-        <a className="text-link" href={`/work/${project.slug}/`}>
+        <a className="text-link" href={sitePath(`/work/${project.slug}/`)}>
           Read case study <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -68,7 +69,7 @@ export function CaseStudy({ project }: { project: Project }) {
   ];
   return (
     <main id="main" className="container case-study">
-      <a className="text-link back-link" href="/#work">
+      <a className="text-link back-link" href={sitePath("/#work")}>
         ← All engineering work
       </a>
       <header className="case-header">
@@ -128,10 +129,10 @@ export function CaseStudy({ project }: { project: Project }) {
       </div>
       <div className="case-end">
         <h2>Explore the next layer.</h2>
-        <a className="button primary" href="/#work">
+        <a className="button primary" href={sitePath("/#work")}>
           More engineering work →
         </a>
-        <a className="button" href="/#contact">
+        <a className="button" href={sitePath("/#contact")}>
           Get in touch ↗
         </a>
       </div>

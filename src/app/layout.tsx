@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { profile } from "../content/profile";
 import { pageMetadata, siteOrigin } from "../content/seo";
+import { sitePath } from "../content/urls";
 import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     default: "Sasiru Vishmika — Software, Cloud & Infrastructure",
     template: "%s | Sasiru Vishmika",
   },
-  icons: { icon: "/icon.svg", apple: "/apple-touch-icon.png" },
+  icons: { icon: sitePath("/icon.svg"), apple: sitePath("/apple-touch-icon.png") },
 };
 export default function RootLayout({
   children,
@@ -28,7 +29,7 @@ export default function RootLayout({
         </a>
         <header className="site-header">
           <div className="container header-inner">
-            <a className="brand" href="/" aria-label="Sasiru Vishmika home">
+            <a className="brand" href={sitePath("/")} aria-label="Sasiru Vishmika home">
               <span className="brand-symbol" aria-hidden="true">
                 sv.
               </span>
@@ -40,10 +41,10 @@ export default function RootLayout({
               </span>
             </a>
             <nav aria-label="Main navigation">
-              <a href="/#work">Work</a>
-              <a href="/#domains">Domains</a>
-              <a href="/#about">About</a>
-              <a className="nav-contact" href="/#contact">
+              <a href={sitePath("/#work")}>Work</a>
+              <a href={sitePath("/#domains")}>Domains</a>
+              <a href={sitePath("/#about")}>About</a>
+              <a className="nav-contact" href={sitePath("/#contact")}>
                 Let’s talk <span aria-hidden="true">↗</span>
               </a>
             </nav>

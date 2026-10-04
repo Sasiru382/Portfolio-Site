@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { sitePath } from "./urls";
 const configuredOrigin = process.env.SITE_URL || "http://localhost:3000";
 const parsed = new URL(configuredOrigin);
 if (
@@ -19,17 +20,17 @@ export function pageMetadata(
   return {
     title,
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: sitePath(path) },
     openGraph: {
       title,
       description,
-      url: path,
+      url: sitePath(path),
       siteName: "Sasiru Vishmika · Engineering",
       type: "website",
       locale: "en_US",
       images: [
         {
-          url: "/og.png",
+          url: sitePath("/og.png"),
           width: 1200,
           height: 630,
           alt: "Sasiru Vishmika — Software, Cloud & Infrastructure",
@@ -40,7 +41,7 @@ export function pageMetadata(
       card: "summary_large_image",
       title,
       description,
-      images: ["/og.png"],
+      images: [sitePath("/og.png")],
     },
   };
 }

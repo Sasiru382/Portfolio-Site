@@ -1,3 +1,4 @@
+import { sitePath } from "../content/urls";
 export default function NotFound() {
   return (
     <main id="main" className="container not-found">
@@ -7,7 +8,7 @@ export default function NotFound() {
         The page may have moved. The engineering work is still a good place to
         start.
       </p>
-      <a className="button primary" href="/">
+      <a className="button primary" href={sitePath("/")}>
         Return home →
       </a>
     </main>

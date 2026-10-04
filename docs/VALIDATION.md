@@ -7,7 +7,7 @@ Executed against the **static production export**, not the development server. D
 | Check | Actual result |
 |---|---|
 | Clean dependency install (`npm ci`) | Passed; lockfile reproducible |
-| SSR/content tests (`npm test`) | **5 passed**, 0 failed |
+| SSR/content tests (`npm test`) | **6 passed**, 0 failed, including project-path configuration regression |
 | ESLint (`npm run lint`) | Exit 0, no warnings/errors |
 | TypeScript (`npm run typecheck`) | Exit 0 |
 | Production build (`npm run build`) | Exit 0; home, 3 case studies, not-found, sitemap and robots prerendered |
@@ -51,4 +51,8 @@ Vertical RED→GREEN slices were run in order:
 
 Legacy scroll exception, heading/input/icon accessibility problems, template metadata, private address/phone publication, excessive assets and stale resume behavior removed. The optional Next ESLint preset introduced five dev-only high-severity dependency findings and was incompatible with supported ESLint 10; replacing it with current JS/TypeScript recommended rules eliminated the findings. No unsupported transitive override or runtime downgrade was used.
 
-No unresolved functional/visual/a11y defect was found within this test scope. Remaining publication constraints are content approval and actual SITE_URL; LinkedIn requires manual confirmation. Only Chromium was exercised; no real Safari/iOS, assistive-technology session, live mailbox delivery, remote deployment or field performance verification occurred. Historical project tests/deployments were not executed. Source-backed case studies are not production-readiness certifications. Parent agent is expected to perform an independent final review.
+No unresolved functional/visual/a11y defect was found within this test scope. LinkedIn requires manual confirmation. Only Chromium was exercised; no real Safari/iOS, assistive-technology session, live mailbox delivery or field performance verification occurred. Historical project tests/deployments were not executed. Source-backed case studies are not production-readiness certifications. An independent review reran the original quality gates successfully.
+
+## GitHub Pages project-path validation
+
+Owner approved the merge and existing-site deployment. Test-first regression initially failed because canonicals lacked `/Portfolio-Site`; after metadata/discovery support passed, native case-study navigation assertions failed and were corrected with the shared URL helper. Root defaults still pass all 23 browser tests. The project-path production build passed 20 route/viewport checks, zero axe/console/network/overflow findings, 13 asset checks, sitemap/robots, no-JavaScript navigation and HTTP 404. Actual results: `validation/pages-local.json`; mobile/desktop screenshots: `validation/screenshots/pages-*.png`. Deployment uses a dedicated gh-pages artifact branch because GitHub rejected workflow creation with the available token's scope. Live results, once verified, are recorded separately in `validation/pages-live.json`.
