@@ -6,11 +6,11 @@ The owner approved merging the redesign into `main` and publishing it to the exi
 
 ## GitHub Pages
 
-Source code is maintained on `main`; the verified static export is published to the dedicated `gh-pages` branch, with `.nojekyll` so `_next/` assets are served. Pages settings select `gh-pages` and `/`. This preserves the source repository and keeps the existing public URL.
+The site retains its existing Pages configuration: **main branch, repository root (`/`)**. Source and the generated production export coexist on main. An empty `.nojekyll` makes GitHub serve `_next/` assets without Jekyll processing. The dedicated `gh-pages` artifact snapshot is not the active publishing source.
 
-A pinned least-privilege Actions workflow was prepared, but GitHub rejected its push because the available token does not have `workflow` scope. No credentials were expanded and no repository permissions were bypassed. Publication therefore uses the supported branch-source Pages mechanism. **A push to main alone does not republish the site**: build/verify the project-path export and publish its contents to `gh-pages` when updating. A future authorized workflow-capable credential can enable CI deployment.
+A pinned least-privilege Actions workflow was prepared, but GitHub rejected its push because the available token lacks `workflow` scope. Updating Pages settings to a dedicated artifact branch was also rejected with HTTP 403. No credentials were expanded or permissions bypassed. The verified export was therefore published through the existing main/root source, which requires only the authorized repository-content push.
 
-Production was built with Node 24 LTS and `npm ci`. For a new publication, clone the `gh-pages` branch into a temporary checkout, replace its tracked artifact files with `out/` contents (preserving `.git`), add an empty `.nojekyll`, commit the source main SHA in the message and push normally. Never force-push main or publish the source tree itself. Verify the Pages build and live URL after publication.
+Production was built with Node 24 LTS and `npm ci`. To update the site, build and verify the project-path export, then copy **only the contents of `out/`** into the repository root, preserving all source/docs/config files. Remove old generated `_next`, `work`, `404` and `_not-found` directories before copying to avoid stale artifacts; do not remove `src/app/work`. Keep `.nojekyll`, commit generated files together with source updates, and push main normally. Verify the Pages build and live URL. Never force-push main. If a future authorized workflow-capable credential enables CI publishing, the checked-in export can be removed after switching Pages to Actions.
 
 Build-time configuration:
 

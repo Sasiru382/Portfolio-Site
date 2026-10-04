@@ -1,6 +1,6 @@
 # Sasiru Vishmika · Engineering portfolio
 
-A source-backed portfolio with a software foundation and a cloud, infrastructure, DevOps, networking and security direction. The owner approved the redesign merge and publication to **https://sasiru382.github.io/Portfolio-Site/**. Source lives on `main`; the production export is published from `gh-pages`.
+A source-backed portfolio with a software foundation and a cloud, infrastructure, DevOps, networking and security direction. The owner approved the redesign merge and publication to **https://sasiru382.github.io/Portfolio-Site/**. Source and the verified root-level production export live on `main`, matching the existing Pages source setting. See deployment documentation before updating the published artifact.
 
 ## Run
 
