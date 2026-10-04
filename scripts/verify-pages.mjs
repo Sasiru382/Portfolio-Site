@@ -7,6 +7,7 @@ import { mkdirSync, writeFileSync, mkdtempSync, symlinkSync, rmSync } from 'node
 import { spawn } from 'node:child_process';
 import { resolve } from 'node:path';
 import assert from 'node:assert/strict';
+import { heroGeometry } from './hero-geometry.mjs';
 
 const live = process.env.VERIFY_URL;
 const prefix = '/Portfolio-Site';
@@ -24,7 +25,7 @@ if (!live) {
   }
 }
 let browser;
-const report = { url, routes: [], assets: [], errors: [], screenshots: [] };
+const report = { url, routes: [], hero: [], assets: [], errors: [], screenshots: [] };
 try {
   browser = await chromium.launch({ headless: true });
   const context = await browser.newContext();
@@ -34,7 +35,7 @@ try {
   page.on('response', r => { if (r.status() >= 400) report.errors.push(`${r.status()} ${r.url()}`); });
   const routes = ['', 'work/api-delivery-workflow/', 'work/student-data-system/', 'work/consultation-management/'];
   const assets = new Set();
-  for (const width of [320, 390, 768, 1280, 1440]) {
+  for (const width of [320, 390, 768, 900, 980, 1024, 1100, 1200, 1279, 1280, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     for (const route of routes) {
       const response = await page.goto(new URL(route, url).href);
@@ -42,6 +43,11 @@ try {
       await page.waitForLoadState('networkidle');
       assert.equal(await page.locator('h1').count(), 1);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+      if (!route) {
+        const geometry = await page.evaluate(heroGeometry);
+        assert.deepEqual(geometry.issues, [], JSON.stringify(geometry));
+        report.hero.push(geometry);
+      }
       const violations = (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()).violations;
       assert.deepEqual(violations, []);
       assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), `${origin}${prefix}/${route}`);
@@ -76,13 +82,24 @@ try {
   assert.ok(await staticPage.getByRole('heading', { name: 'Security & networking', exact: true }).isVisible());
   await nojs.close();
   mkdirSync('docs/validation/screenshots', { recursive: true });
-  for (const width of [390, 1440]) {
+  for (const width of [390, 980, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(url);
     const path = `docs/validation/screenshots/${live ? 'live' : 'pages'}-${width}.png`;
     await page.screenshot({ path, fullPage: true });
     report.screenshots.push(path);
   }
+  const mobile = await browser.newContext({ viewport: { width: 980, height: 1800 }, isMobile: true, hasTouch: true, deviceScaleFactor: 3 });
+  const mobilePage = await mobile.newPage();
+  await mobilePage.goto(url);
+  await mobilePage.waitForLoadState('networkidle');
+  const mobileGeometry = await mobilePage.evaluate(heroGeometry);
+  assert.deepEqual(mobileGeometry.issues, [], JSON.stringify(mobileGeometry));
+  report.hero.push({ ...mobileGeometry, mode: 'mobile-desktop-layout' });
+  const mobileShot = `docs/validation/screenshots/${live ? 'live' : 'pages'}-mobile-desktop-980.png`;
+  await mobilePage.screenshot({ path: mobileShot });
+  report.screenshots.push(mobileShot);
+  await mobile.close();
   assert.deepEqual(report.errors, []);
   writeFileSync(output, JSON.stringify(report, null, 2) + '\n');
   console.log(JSON.stringify({ url, viewportRouteChecks: report.routes.length, assets: report.assets.length, errors: report.errors, notFoundStatus: report.notFoundStatus, screenshots: report.screenshots }));

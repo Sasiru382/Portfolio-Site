@@ -75,6 +75,150 @@
     },
     {
       "route": "",
+      "width": 900,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/api-delivery-workflow/",
+      "width": 900,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/student-data-system/",
+      "width": 900,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/consultation-management/",
+      "width": 900,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "",
+      "width": 980,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/api-delivery-workflow/",
+      "width": 980,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/student-data-system/",
+      "width": 980,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/consultation-management/",
+      "width": 980,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "",
+      "width": 1024,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/api-delivery-workflow/",
+      "width": 1024,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/student-data-system/",
+      "width": 1024,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/consultation-management/",
+      "width": 1024,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "",
+      "width": 1100,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/api-delivery-workflow/",
+      "width": 1100,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/student-data-system/",
+      "width": 1100,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/consultation-management/",
+      "width": 1100,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "",
+      "width": 1200,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/api-delivery-workflow/",
+      "width": 1200,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/student-data-system/",
+      "width": 1200,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/consultation-management/",
+      "width": 1200,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "",
+      "width": 1279,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/api-delivery-workflow/",
+      "width": 1279,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/student-data-system/",
+      "width": 1279,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "work/consultation-management/",
+      "width": 1279,
+      "status": 200,
+      "axeViolations": 0
+    },
+    {
+      "route": "",
       "width": 1280,
       "status": 200,
       "axeViolations": 0
@@ -122,9 +266,84 @@
       "axeViolations": 0
     }
   ],
+  "hero": [
+    {
+      "viewport": 320,
+      "grid": "280px",
+      "diagramWidth": 280,
+      "issues": []
+    },
+    {
+      "viewport": 390,
+      "grid": "350px",
+      "diagramWidth": 350,
+      "issues": []
+    },
+    {
+      "viewport": 768,
+      "grid": "704px",
+      "diagramWidth": 530,
+      "issues": []
+    },
+    {
+      "viewport": 900,
+      "grid": "768px",
+      "diagramWidth": 530,
+      "issues": []
+    },
+    {
+      "viewport": 980,
+      "grid": "768px",
+      "diagramWidth": 530,
+      "issues": []
+    },
+    {
+      "viewport": 1024,
+      "grid": "960px",
+      "diagramWidth": 530,
+      "issues": []
+    },
+    {
+      "viewport": 1100,
+      "grid": "601.922px 354.062px",
+      "diagramWidth": 354.0625,
+      "issues": []
+    },
+    {
+      "viewport": 1200,
+      "grid": "601.922px 354.062px",
+      "diagramWidth": 354.0625,
+      "issues": []
+    },
+    {
+      "viewport": 1279,
+      "grid": "601.922px 354.062px",
+      "diagramWidth": 354.0625,
+      "issues": []
+    },
+    {
+      "viewport": 1280,
+      "grid": "687.547px 404.438px",
+      "diagramWidth": 404.4375,
+      "issues": []
+    },
+    {
+      "viewport": 1440,
+      "grid": "687.547px 404.438px",
+      "diagramWidth": 404.4375,
+      "issues": []
+    },
+    {
+      "viewport": 980,
+      "grid": "768px",
+      "diagramWidth": 530,
+      "issues": [],
+      "mode": "mobile-desktop-layout"
+    }
+  ],
   "assets": [
     {
-      "path": "/Portfolio-Site/_next/static/chunks/0s7qi0rqaefqj.css",
+      "path": "/Portfolio-Site/_next/static/chunks/2ktbk8-oruz7w.css",
       "status": 200
     },
     {
@@ -179,7 +398,9 @@
   "errors": [],
   "screenshots": [
     "docs/validation/screenshots/pages-390.png",
-    "docs/validation/screenshots/pages-1440.png"
+    "docs/validation/screenshots/pages-980.png",
+    "docs/validation/screenshots/pages-1440.png",
+    "docs/validation/screenshots/pages-mobile-desktop-980.png"
   ],
   "notFoundStatus": 404
 }

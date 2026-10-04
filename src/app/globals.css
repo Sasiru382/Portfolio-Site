@@ -760,8 +760,6 @@ nav a {
     padding: 20px 0;
   }
   .hero {
-    grid-template-columns: 1.18fr 1fr;
-    gap: 68px;
     padding-top: 90px;
   }
   .system-map {
@@ -857,6 +855,21 @@ nav a {
   }
   .case-body section:first-of-type {
     padding-top: 54px;
+  }
+}
+@media (min-width: 1100px) {
+  /* A long heading must not impose its min-content width on the diagram track. */
+  .hero {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 68px;
+  }
+  .hero-copy {
+    container-type: inline-size;
+    min-width: 0;
+  }
+  .hero h1 {
+    /* Size against the actual column, not the viewport (including container caps). */
+    font-size: clamp(2.3rem, 15cqw, 6.8rem);
   }
 }
 @media (prefers-reduced-motion: reduce) {

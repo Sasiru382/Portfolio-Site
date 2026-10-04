@@ -48,7 +48,7 @@ node scripts/verify-pages.mjs
 VERIFY_URL=https://sasiru382.github.io/Portfolio-Site/ VERIFY_OUTPUT=docs/validation/pages-live.json node scripts/verify-pages.mjs
 ```
 
-The project-path verifier creates a temporary local mount under `$TMPDIR`, starts/stops its own server on 4174, and checks home plus all three direct case-study routes at five viewport widths. It checks axe accessibility, overflow, console/network errors, canonical/OG metadata, all discovered scripts/styles/icons, sitemap/robots, HTTP 404, native navigation and no-JavaScript access. It captures mobile and desktop screenshots. Live verification uses the real Pages URL without starting a server.
+The project-path verifier creates a temporary local mount under `$TMPDIR`, starts/stops its own server on 4174, and checks home plus all three direct case-study routes at eleven viewport widths (including 900, 980, 1024, 1100, 1200 and 1279px). It also checks diagram child and text containment, heading containment and a touch/mobile 980px desktop-layout context; document overflow alone cannot catch hidden internal clipping. It checks axe accessibility, overflow, console/network errors, canonical/OG metadata, all discovered scripts/styles/icons, sitemap/robots, HTTP 404, native navigation and no-JavaScript access. It captures mobile, 980px and desktop screenshots. Live verification uses the real Pages URL without starting a server.
 
 ## Other static hosts
 
