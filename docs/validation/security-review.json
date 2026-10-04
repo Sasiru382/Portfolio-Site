@@ -1,0 +1,5 @@
+{
+  "scanned_files": 14,
+  "findings": [],
+  "scope": "authored src and scripts; legitimate fixed-argument npm child processes are not shell=true"
+}

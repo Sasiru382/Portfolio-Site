@@ -1,0 +1,70 @@
+import type { ReactNode } from "react";
+export function SectionHeading({
+  index,
+  eyebrow,
+  title,
+  children,
+}: {
+  index: string;
+  eyebrow: string;
+  title: string;
+  children?: ReactNode;
+}) {
+  return (
+    <div className="section-heading">
+      <div>
+        <p className="eyebrow">
+          <span>{index}</span> / {eyebrow}
+        </p>
+        <h2>{title}</h2>
+      </div>
+      {children && <p className="section-intro">{children}</p>}
+    </div>
+  );
+}
+export function SystemMap() {
+  return (
+    <figure
+      className="system-map"
+      aria-label="Conceptual engineering layers: software, delivery, infrastructure, with networking and security across all layers"
+    >
+      <div className="map-head">
+        <span className="eyebrow">SYSTEM / PERSPECTIVE</span>
+        <span className="map-cross" aria-hidden="true">
+          +
+        </span>
+      </div>
+      <div className="map-layer">
+        <span className="mono">01</span>
+        <div>
+          <strong>Software</strong>
+          <small>Applications · APIs · data</small>
+        </div>
+        <span aria-hidden="true">↗</span>
+      </div>
+      <div className="map-connector" aria-hidden="true" />
+      <div className="map-layer">
+        <span className="mono">02</span>
+        <div>
+          <strong>Delivery</strong>
+          <small>Containers · CI/CD · platforms</small>
+        </div>
+        <span aria-hidden="true">↗</span>
+      </div>
+      <div className="map-connector" aria-hidden="true" />
+      <div className="map-layer">
+        <span className="mono">03</span>
+        <div>
+          <strong>Infrastructure</strong>
+          <small>Cloud · compute · operations</small>
+        </div>
+        <span aria-hidden="true">↗</span>
+      </div>
+      <div className="map-foundation">
+        <span>Networking</span>
+        <span>Security</span>
+      </div>
+      <figcaption>Connected layers. One engineering perspective.</figcaption>
+    </figure>
+  );
+}

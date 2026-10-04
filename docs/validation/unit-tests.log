@@ -1,0 +1,17 @@
+
+> sasiru-engineering-portfolio@2.0.0 test
+> tsx --test tests/*.test.tsx
+
+✔ system diagram avoids unavailable full-width decorative glyphs (8.316865ms)
+✔ visual system supplies mobile-first layouts visible keyboard focus and reduced-motion support (0.447ms)
+✔ home gives recruiters an engineering identity and working section navigation without JavaScript (36.007491ms)
+✔ selected work opens complete source-traceable case studies with honest security limitations (46.134995ms)
+✔ search metadata exposes every static case study under the configured origin (77.915064ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 848.017621
