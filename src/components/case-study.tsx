@@ -1,11 +1,140 @@
-import type { Project } from '../content/projects';
+import type { Project } from "../content/projects";
 export function ArchitectureFlow({ steps }: { steps: string[] }) {
-  return <ol className="architecture-flow" aria-label="Architecture flow">{steps.map((step, i) => <li key={step}><span className="mono">0{i + 1}</span><strong>{step}</strong>{i < steps.length - 1 && <span className="flow-arrow" aria-hidden="true">→</span>}</li>)}</ol>;
+  return (
+    <ol className="architecture-flow" aria-label="Architecture flow">
+      {steps.map((step, i) => (
+        <li key={step}>
+          <span className="mono">0{i + 1}</span>
+          <strong>{step}</strong>
+          {i < steps.length - 1 && (
+            <span className="flow-arrow" aria-hidden="true">
+              →
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
 }
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
-  return <article className={`project-card ${index === 0 ? 'featured' : ''}`}><div className="project-visual"><div className="visual-caption"><span className="mono">CASE / 0{index + 1}</span><span className="mono">SOURCE-VERIFIED</span></div><ArchitectureFlow steps={project.flow}/><div className="visual-grid" aria-hidden="true"/></div><div className="project-copy"><p className="eyebrow">{project.category}</p><h3><a href={`/work/${project.slug}/`}>{project.title}<span className="card-arrow" aria-hidden="true">↗</span></a></h3><p>{project.summary}</p><ul className="tags">{project.stack.map(s => <li key={s}>{s}</li>)}</ul><p className="scope">{project.scope}</p><a className="text-link" href={`/work/${project.slug}/`}>Read case study <span aria-hidden="true">→</span></a></div></article>;
+export function ProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
+  return (
+    <article className={`project-card ${index === 0 ? "featured" : ""}`}>
+      <div className="project-visual">
+        <div className="visual-caption">
+          <span className="mono">CASE / 0{index + 1}</span>
+          <span className="mono">SOURCE-VERIFIED</span>
+        </div>
+        <ArchitectureFlow steps={project.flow} />
+        <div className="visual-grid" aria-hidden="true" />
+      </div>
+      <div className="project-copy">
+        <p className="eyebrow">{project.category}</p>
+        <h3>
+          <a href={`/work/${project.slug}/`}>
+            {project.title}
+            <span className="card-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </a>
+        </h3>
+        <p>{project.summary}</p>
+        <ul className="tags">
+          {project.stack.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
+        <p className="scope">{project.scope}</p>
+        <a className="text-link" href={`/work/${project.slug}/`}>
+          Read case study <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+  );
 }
 export function CaseStudy({ project }: { project: Project }) {
-  const sections = [{title:'Problem', text:project.problem}, {title:'Architecture',text:project.architecture}, {title:'What I built',text:project.built}, {title:'Engineering challenges',text:project.challenges}, {title:'Security & networking',text:project.security}, {title:'Result & learnings',text:project.result}];
-  return <main id="main" className="container case-study"><a className="text-link back-link" href="/#work">← All engineering work</a><header className="case-header"><p className="eyebrow">{project.category}</p><h1>{project.title}</h1><p className="lead">{project.summary}</p><p className="scope">{project.scope}</p><ul className="tags">{project.stack.map(s => <li key={s}>{s}</li>)}</ul></header><div className="case-layout"><aside className="case-nav"><nav aria-label="Case study sections"><p className="eyebrow">IN THIS CASE STUDY</p>{sections.map((s, i) => <a key={s.title} href={`#section-${i}`}>{s.title}</a>)}<a href="#sources">Source evidence</a></nav></aside><div className="case-body"><ArchitectureFlow steps={project.flow}/>{sections.map((s, i) => <section key={s.title} id={`section-${i}`}><p className="eyebrow">0{i+1} / ENGINEERING NOTES</p><h2>{s.title}</h2><p>{s.text}</p></section>)}<section id="sources"><p className="eyebrow">07 / TRACEABILITY</p><h2>Source evidence</h2><p>These links pin the reviewed code to a commit. Repository contents support the described implementation, not unverified deployment outcomes.</p><ul className="source-links">{project.sources.map(s => <li key={s.url}><a href={s.url}>{s.label} <span aria-hidden="true">↗</span></a></li>)}</ul><a className="button" href={project.repo}>Open repository <span aria-hidden="true">↗</span></a></section></div></div><div className="case-end"><h2>Explore the next layer.</h2><a className="button primary" href="/#work">More engineering work →</a><a className="button" href="/#contact">Get in touch ↗</a></div></main>;
+  const sections = [
+    { title: "Problem", text: project.problem },
+    { title: "Architecture", text: project.architecture },
+    { title: "What I built", text: project.built },
+    { title: "Engineering challenges", text: project.challenges },
+    { title: "Security & networking", text: project.security },
+    { title: "Result & learnings", text: project.result },
+  ];
+  return (
+    <main id="main" className="container case-study">
+      <a className="text-link back-link" href="/#work">
+        ← All engineering work
+      </a>
+      <header className="case-header">
+        <p className="eyebrow">{project.category}</p>
+        <h1>{project.title}</h1>
+        <p className="lead">{project.summary}</p>
+        <p className="scope">{project.scope}</p>
+        <ul className="tags">
+          {project.stack.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
+      </header>
+      <div className="case-layout">
+        <aside className="case-nav">
+          <nav aria-label="Case study sections">
+            <p className="eyebrow">IN THIS CASE STUDY</p>
+            {sections.map((s, i) => (
+              <a key={s.title} href={`#section-${i}`}>
+                {s.title}
+              </a>
+            ))}
+            <a href="#sources">Source evidence</a>
+          </nav>
+        </aside>
+        <div className="case-body">
+          <ArchitectureFlow steps={project.flow} />
+          {sections.map((s, i) => (
+            <section key={s.title} id={`section-${i}`}>
+              <p className="eyebrow">0{i + 1} / ENGINEERING NOTES</p>
+              <h2>{s.title}</h2>
+              <p>{s.text}</p>
+            </section>
+          ))}
+          <section id="sources">
+            <p className="eyebrow">07 / TRACEABILITY</p>
+            <h2>Source evidence</h2>
+            <p>
+              These links pin the reviewed code to a commit. Repository contents
+              support the described implementation, not unverified deployment
+              outcomes.
+            </p>
+            <ul className="source-links">
+              {project.sources.map((s) => (
+                <li key={s.url}>
+                  <a href={s.url}>
+                    {s.label} <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a className="button" href={project.repo}>
+              Open repository <span aria-hidden="true">↗</span>
+            </a>
+          </section>
+        </div>
+      </div>
+      <div className="case-end">
+        <h2>Explore the next layer.</h2>
+        <a className="button primary" href="/#work">
+          More engineering work →
+        </a>
+        <a className="button" href="/#contact">
+          Get in touch ↗
+        </a>
+      </div>
+    </main>
+  );
 }
