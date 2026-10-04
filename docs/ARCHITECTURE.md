@@ -1,0 +1,15 @@
+# Architecture and content proposal
+
+Approved brief directs a full rebuild on a separate branch. Proposed information architecture: hero → selected engineering case studies → engineering domains → technical about/progression → experience and education → grouped technical stack → GitHub/contact. Rich `/work/[slug]/` pages share typed content and an architecture-flow component. No invented work history; explain independent projects and confirmed degree without guessed dates.
+
+## Rendering
+Next.js App Router with TypeScript; static export for inexpensive portable hosting. Pages, navigation, case studies, diagrams and footer are server components. Native anchors and a wrapping responsive navigation avoid a JavaScript-dependent hamburger. No animations that hide content, no particles/typing effects, no external font or analytics requests. CSS respects reduced motion. Static content avoids runtime GitHub API rate limits and fake live activity.
+
+## Visual vocabulary
+Graphite #0c0e12, raised #13171e panels, off-white #f1f3f7, readable muted #aeb6c4, restrained periwinkle #b7beff. Fine borders, architectural lines, index labels and a deliberate editorial type hierarchy; systems motif explicitly conceptual, not a claimed production deployment. System sans/mono fonts avoid download latency and licensing ambiguity. Mobile-first single column expands to asymmetric featured work and two/three-column domain grids. Focus outlines and at least 44px link targets.
+
+## Content integrity
+User brief is the authority for Cloud/DevOps/Networking/Security technologies; source repositories prove only described implementations. Feature the API/Azure workflow and two software foundations with honest security limitations. Link a clearly attributed Kamus exploration separately if appropriate. No demo links without an actually verified deployment. Each case includes problem, architecture, stack, contribution scope, challenges, security/networking and results/learning, plus pinned source evidence. Future AKS/private-network/AI infrastructure case studies await sanitized artifacts and contribution detail.
+
+## Quality gates
+Strict vertical test-first slices: homepage identity/navigation, repository-backed case studies, SEO/static routes, accessibility/responsiveness. SSR assertions plus production browser tests. npm lint, typecheck, build, dependency audit; axe, keyboard, reduced motion, console/network, overflow and routes at mobile/tablet/laptop/desktop. Save measured results/screenshots. Environment-defined canonical origin (localhost development fallback), never invent a domain. No main merge or live deployment.
