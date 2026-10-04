@@ -9,7 +9,10 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/*.test.tsx",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "assets": "node scripts/render-assets.mjs",
+    "validate": "node scripts/validate.mjs",
+    "audit:links": "python3 scripts/check-links.py"
   },
   "dependencies": {
     "next": "16.3.8",

@@ -1,0 +1,42 @@
+{
+  "checks": [
+    {
+      "name": "unit-tests",
+      "exitCode": 0
+    },
+    {
+      "name": "lint",
+      "exitCode": 0
+    },
+    {
+      "name": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "name": "production-build",
+      "exitCode": 0
+    },
+    {
+      "name": "dependency-audit",
+      "exitCode": 0
+    }
+  ],
+  "browser": {
+    "startTime": "2026-10-04T11:07:01.158Z",
+    "duration": 38383.984,
+    "expected": 23,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "links": {
+    "total": 14,
+    "reachable": 13,
+    "blocked": 1,
+    "broken": 0
+  },
+  "screenshots": 20,
+  "homepageHtmlBytes": 49931,
+  "staticCssBytes": 16804,
+  "staticJsBytes": 565437
+}
